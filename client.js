@@ -6,7 +6,7 @@ var client = net.connect({port: 1337, host: '46.101.163.47'}, function() { //'co
 });
 client.on('data', function(data) {
 	console.log(data.toString());
-	client.end();
+	// client.end();
 });
 client.on('end', function() {
 	console.log('disconnected from server');
