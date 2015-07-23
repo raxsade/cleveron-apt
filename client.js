@@ -13,6 +13,7 @@ client.on('end', function () {
 });
 
 var responsePrefixes = ['S: {', 'E: {', 'C: {'];
+var currentData;
 function handleResponsesClosure () {
 	var chunks = '';
 	return function (newChunk) {
@@ -21,7 +22,12 @@ function handleResponsesClosure () {
 		chunks = startsWithPrefix ? newChunk : chunks + newChunk;
 		try {
 			var jsonObject = JSON.parse(chunks.slice(3));
-			console.log(jsonObject);
+
+			// response prefix 'S' as a response to "pull" command
+			if ('S' === chunks[0]) {
+				currentData = jsonObject;
+			};
+			console.log(currentData);
 		} catch(e) {
 			console.log(e);
 		}
