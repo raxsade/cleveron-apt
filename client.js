@@ -6,9 +6,17 @@ client.on('connect', function () {
 	client.write('pull');
 })
 client.on('data', function (data) {
-	console.log(data.toString());
-	// client.end();
+	handleResponses(data.toString());
 });
 client.on('end', function () {
 	console.log('disconnected from server');
 });
+
+function handleResponsesClosure () {
+	var chunks = '';
+	return function (newChunk) {
+		console.log(newChunk);
+	}
+}
+
+var handleResponses = handleResponsesClosure();
