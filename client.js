@@ -22,6 +22,10 @@ function handleResponsesClosure () {
 		var startsWithPrefix = responsePrefixes.indexOf(newChunk.slice(0,4)) > -1;
 		chunks = startsWithPrefix ? newChunk : chunks + newChunk;
 		try {
+			// response prefix 'E' throws an error
+			if ('E' === chunks[0]) {
+				throw(chunks);
+			};
 			var jsonObject = JSON.parse(chunks.slice(3));
 
 			// response prefix 'S' as a response to "pull" command
