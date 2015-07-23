@@ -16,10 +16,15 @@ var responsePrefixes = ['S: {', 'E: {', 'C: {'];
 function handleResponsesClosure () {
 	var chunks = '';
 	return function (newChunk) {
-		// console.log(newChunk);
+		console.log(newChunk);
 		var startsWithPrefix = responsePrefixes.indexOf(newChunk.slice(0,4)) > -1;
 		chunks = startsWithPrefix ? newChunk : chunks + newChunk;
-		console.log(chunks);
+		try {
+			var jsonObject = JSON.parse(chunks.slice(3));
+			console.log(jsonObject);
+		} catch(e) {
+			console.log(e);
+		}
 	}
 }
 
