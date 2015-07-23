@@ -1,4 +1,5 @@
 var net = require('net');
+var _ = require('underscore');
 var API_KEY = 'sade';
 var client = net.connect({port: 1337, host: '46.101.163.47'});
 client.on('connect', function () {
@@ -27,6 +28,15 @@ function handleResponsesClosure () {
 			if ('S' === chunks[0]) {
 				currentData = jsonObject;
 			};
+
+			// response prefix 'C' - changed data
+			if ('C' === chunks[0]) {
+				var objectToChange = _.find(currentData[jsonObject.collection], function (obj) {
+					return obj.id === jsonObject.id;
+				});
+				_.extend(objectToChange, jsonObject.change);
+			};
+
 			console.log(currentData);
 		} catch(e) {
 			console.log(e);
