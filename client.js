@@ -12,10 +12,14 @@ client.on('end', function () {
 	console.log('disconnected from server');
 });
 
+var responsePrefixes = ['S: {', 'E: {', 'C: {'];
 function handleResponsesClosure () {
 	var chunks = '';
 	return function (newChunk) {
-		console.log(newChunk);
+		// console.log(newChunk);
+		var startsWithPrefix = responsePrefixes.indexOf(newChunk.slice(0,4)) > -1;
+		chunks = startsWithPrefix ? newChunk : chunks + newChunk;
+		console.log(chunks);
 	}
 }
 
