@@ -2,19 +2,16 @@
 
 This is a test work for Cleveron.
 
+Before running it's needed to create config file like the `config.example.json` but with the right values.
+
 Cleveron APT client connects to the Cleveron APT server and keeps track of the data.
 
-This client uses underscore:
+This client uses lodash:
 ```
-npm install underscore
+npm install
 ```
 
 Run with node:
 ```
-node client
+node .
 ```
-Assignment:
-https://bitbucket.org/cleveron/trial-socketsync-server-task/src/master
-
-Server specs:
-https://bitbucket.org/cleveron/trial-socketsync-server-task/src/master/spec.md
