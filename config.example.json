@@ -1,0 +1,7 @@
+{
+	"apiKey": "_SOMEKEY_",
+	"server": {
+		"port": 1234,
+		"host": "1.2.3.4"
+	}
+}

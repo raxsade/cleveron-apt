@@ -1,16 +1,17 @@
 var net = require('net');
 var _ = require('lodash');
 
+var config = require('./config.json');
+
 // possible prefixes for responses by the server
 var responsePrefixes = ['S: {', 'E: {', 'C: {'];
 // the current APT data
 var currentData;
 
-var API_KEY = 'sade';
-var client = net.connect({port: 1337, host: '46.101.163.47'});
+var client = net.connect(config.server);
 
 client.on('connect', function () {
-	client.write(API_KEY);
+	client.write(config.apiKey);
 	// pull command
 	client.write('pull');
 });
