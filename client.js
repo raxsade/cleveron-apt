@@ -1,5 +1,5 @@
 var net = require('net');
-var _ = require('underscore');
+var _ = require('lodash');
 
 // possible prefixes for responses by the server
 var responsePrefixes = ['S: {', 'E: {', 'C: {'];
@@ -66,7 +66,7 @@ function handleResponsesClosure () {
 			};
 
 			console.log(currentData);
-			
+
 		} catch(e) {
 			console.log(e);
 		}
